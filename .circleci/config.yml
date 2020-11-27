@@ -1,0 +1,101 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/node:12
+    working_directory: /tmp/workspace
+
+jobs:
+  dependencies:
+    executor: default
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore package cache
+          key: yarn-deps-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install dependencies
+          command: |
+            if [ ! -d /tmp/workspace/node_modules ]; then
+              yarn install --frozen-lockfile
+            fi
+      - save_cache:
+          name: Save package cache
+          paths:
+            - /tmp/workspace/node_modules
+          key: yarn-deps-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - node_modules
+
+  compile:
+    executor: default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Compile
+          command: yarn compile
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - artifacts
+            - cache
+
+  lint:
+    executor: default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Lint
+          command: yarn lint
+
+  test:
+    executor: default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Run tests
+          command: yarn test:gas
+      - run:
+          name: Report gas changes
+          command: npx codechecks
+
+  coverage:
+    executor: default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Run coverage tests
+          command: yarn coverage
+      - run:
+          name: Upload coverage
+          command: |
+            bash <(curl -s https://codecov.io/bash)
+
+workflows:
+  version: 2
+  all:
+    jobs:
+      - dependencies
+      - compile:
+          requires:
+            - dependencies
+      - lint:
+          requires:
+            - compile
+      - test:
+          requires:
+            - compile
+      - coverage:
+          requires:
+            - compile

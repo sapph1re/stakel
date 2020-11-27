@@ -1,0 +1,57 @@
+Deployment TODOS:
+
+# SMART CONTRACTS
+    * Setup Georili Testnet Provider in scripts
+    * Set up deployer HDWallet Provider
+    * Configure Settings
+        * VRC contract Address
+        * set Maintainer Contract Address
+        * set Admin Contract Address
+        * set Withdraw Credentials
+        * set Maintainer fee
+        * set Validator Price per month
+
+# WEB3 WATCHER
+    * Change all console logging to production logging
+    * Add all Contract addresses to .env file
+    * Add Operator account to .env
+        * set up HDWALLET provider for operator account
+    * Create Secret Containers
+        * Add HDWallet key to secret Containers
+        * Add BACKEND_API_KEY to .env
+            * key used by web3watcher to access Django Backend
+        * Add DJANGO_API_KEY to .env
+            * key used by DJANGO Backend to access web3 watcher
+    * Add Network_id to .env
+    * Add WEB3Provider endpoint to .env
+    * Add REGISTRATIONHOST (DJANGO BACKEND) to .env
+        * Change api calls to use full URI from .env ('http://' + url+host)
+    *Change listen PORT to a .env variable
+    *Setup Docker file for Production
+        * SSL etc.
+
+# DJango Backend
+    * Change all console logging to production logging
+    * Create Production settings.py
+    * Change .ENV vars for
+         *REDIS SERVER ENDPOINT
+         *WEB3APP ENDPOINT
+         *DJANGO Q cluster
+    * Create SUperuser
+    * Create 2 API-Keys
+         * BACKEND_API_KEY(web3 -> django)
+         * DJANGO_API_KEY (django -> web3)
+    * Remove withdrawal Credential unique contraint
+    * Setup Production Dockerfile
+        * SSL, GUNICORN etc
+        * DjangoQ cluster
+
+#FRONT END
+    * Import Artifacts
+    * Read in network id from .env file
+    * Setup Production Dockerfile
+        * SSL
+        * Potentially CI/CD
+    * Adding Loading/connect to metamask page
+
+
