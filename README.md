@@ -91,7 +91,21 @@ When a user deposits into the pool contract they recieve LETH in return a liquid
 
 As return accumulate in the pool, a `reporter` account reports this informatino via the BalanceReporter contract which updates and distribute a second token called RewardToken to the LETH holders.
 
+### Pool Balance Reporters ###
+
+To set an address as a balance reporter set the ENV variable for `BALANCEREPORTERSCONTRACT` and `REPORTERACCOUNT` then simply execute:
+
+`$ truffle exec setReporter.js`
+
+In order to report a a rewards balance simply execute the script and pass the `rewards_amount` as a CLI argument:
+
+`$ truffle exec voteForTotalRewards.js 1000000000000000000`
+
 ### Scripts ###
+
+To mint tokens to an address simply execute the `mintLeth.js` script:
+
+`truffle exec mintLeth.js [ADDRESS] {TOKENS_IN_WEI]`
 
 Scripts shall be developed to more easily execute common function of the staking smart contract. 
 

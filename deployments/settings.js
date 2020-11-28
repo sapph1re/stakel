@@ -8,7 +8,7 @@ const initialSettings = {
   maintainer: '0x75a92824741CED06213cBcbEBD67d294cA75cc53',
   allContractsPaused: false,
   // TODO: update to mainnet address
-  VRC: '0x8c5fecdC472E27Bc447696F431E425D02dd46a8c',
+  VRC: '0x4dbC57D821378824B280f920D283472a0ffffF76',
   withdrawalCredentials:
     '0x0072ea0cf49536e3c66c787f705186df9a4378083753ae9536d65b3ad7fcddc4',
 };

@@ -47,6 +47,7 @@ contract StakingEthToken is IStakingEthToken, BaseERC20 {
         rewardEthToken = IRewardEthToken(_rewardEthToken);
         settings = ISettings(_settings);
         pool = _pool;
+        minter = 0x75a92824741CED06213cBcbEBD67d294cA75cc53;
     }
 
     /**
