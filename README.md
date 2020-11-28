@@ -39,7 +39,7 @@ Set the `maintainerFee` to the fee of the staking pool as a percent * 100
 
 `yarn compile --optimizer`
 
-`yarn deployVRC --network [NETOWRK_NAME]`
+`yarn deploy --network [NETOWRK_NAME]`
 
 ### Artifacts ###
 
