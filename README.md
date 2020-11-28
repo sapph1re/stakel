@@ -107,9 +107,6 @@ To mint tokens to an address simply execute the `mintLeth.js` script:
 
 `truffle exec mintLeth.js [ADDRESS] {TOKENS_IN_WEI]`
 
-Scripts shall be developed to more easily execute common function of the staking smart contract. 
-
-
 # StakeWise smart contracts
 
 [![CircleCI](https://circleci.com/gh/stakewise/contracts.svg?style=svg)](https://circleci.com/gh/stakewise/contracts)
